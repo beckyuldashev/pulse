@@ -32,6 +32,16 @@
       display: none;
     }
   }
+
+  .title {
+    &_left {
+      font-size: 30px;
+    }
+  }
+
+  .consultation {
+    padding: 70px 0 70px 0;
+  }
 }
 
 @media(max-width: 575px) {
@@ -43,6 +53,16 @@
     &__subheader {
       font-size: 18px;
     }
+  }
+
+  .title {
+    &_left {
+      font-size: 20px;
+    }
+  }
+
+  .consultation__text {
+    font-size: 18px;
   }
 }
 
@@ -98,5 +118,9 @@
     &__description {
       font-size: 12px;
     }
+  }
+
+  .consultation__text {
+    font-size: 14px;
   }
 }
