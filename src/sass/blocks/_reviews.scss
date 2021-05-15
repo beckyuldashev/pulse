@@ -1,0 +1,54 @@
+.reviews {
+  padding-bottom: 50px;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+  }
+
+  &__item {
+    display: flex;
+    margin-bottom: 60px;
+  }
+
+  &__item:last-child {
+    margin-bottom: 0;
+  }
+
+  &__img {
+    margin-right: 50px;
+    width: 170px;
+    height: 170px;
+  }
+
+  &__username {
+    font-weight: 700;
+    font-size: 18px;
+    color: #0D0D0D;
+  }
+
+  &__achievement {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    color: #646464;
+  }
+
+  &__description {
+    margin-top: 10px;
+  }
+
+  &__text {
+    margin-bottom: 10px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 25px;
+    color: #0D0D0D;
+  }
+
+  &__text:last-child {
+    margin-bottom: 0;
+  }
+}

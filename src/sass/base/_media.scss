@@ -42,6 +42,46 @@
   .consultation {
     padding: 70px 0 70px 0;
   }
+
+
+  // Reviews ============>
+  .reviews {
+    &__item {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__img {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+
+    &__content {
+      text-align: center;
+    }
+  }
+
+  // footer 
+  .footer {
+
+    &__address {
+      font-size: 14px;
+    }
+
+    &__phone {
+      font-size: 14px;
+    }
+
+    &__social {
+      &-item {
+        margin: 0 10px;
+
+        img {
+          width: 30px;
+        }
+      }
+    }
+  }
 }
 
 @media(max-width: 575px) {
@@ -63,6 +103,21 @@
 
   .consultation__text {
     font-size: 18px;
+  }
+
+  // Reviews ============>
+  .reviews {
+    &__text {
+      font-size: 12px;
+      line-height: 20px;
+    }
+  }
+
+  // footer 
+  .footer {
+    &__info {
+      padding: 20px 50px;
+    }
   }
 }
 
@@ -120,7 +175,38 @@
     }
   }
 
+  .consultation {
+    min-height: auto
+  }
+
   .consultation__text {
     font-size: 14px;
+  }
+
+  .feed-form {
+    width: 287px;
+  }
+
+  // footer 
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+
+    &__info {
+      order: -1;
+      position: initial;
+      top: initial;
+      left: initial;
+      transform: translateX(0)
+    }
+
+    &__address {
+      margin-bottom: 20px;
+    }
+
+    &__phone {
+      margin-bottom: 20px;
+    }
   }
 }
