@@ -1,26 +1,28 @@
+//Initialize your slider in your script file or an inline script tag
 $(document).ready(function(){
   $('.carousel__inner').slick({
-    speed: 1000,
-    prevArrow: '<button type="button" class="slick-prev"><img src="icons/arrow_left.svg" alt="arrow_left"></button>',
-    nextArrow: '<button type="button" class="slick-next"><img src="icons/arrow_right.svg" alt="arrow_right"></button>',
+    speed: 1200,
+    // adaptiveHeight: true,
+    prevArrow: '<button type="button" class="slick-prev"><img src="icons/arrow_left.svg" alt=""></button>',
+    nextArrow: '<button type="button" class="slick-next"><img src="icons/arrow_right.svg" alt=""></button>',
     responsive: [
-      {
-        breakpoint: 992,
-        settings: {
-          dots: true,
-          arrows: false
-        }
-      }
+        {
+            breakpoint: 992,
+            settings: {
+                dots: true,
+                arrows: false
+            }
+        },
     ]
   });
 
   $('ul.catalog__tabs').on('click', 'li:not(.catalog__tab_active)', function() {
     $(this)
       .addClass('catalog__tab_active').siblings().removeClass('catalog__tab_active')
-      .closest('.container').find('div.catalog__content').removeClass('catalog__content_active').eq($(this).index()).addClass('catalog__content_active');
+      .closest('div.container').find('div.catalog__content').removeClass('catalog__content_active').eq($(this).index()).addClass('catalog__content_active');
   });
 
-  function toggleSlide(item) {
+  const toggleSlide = function (item) {
     $(item).each(function (i) {
       $(this).on('click', function (e) {
         e.preventDefault();
@@ -28,37 +30,37 @@ $(document).ready(function(){
         $('.catalog-item__list').eq(i).toggleClass('catalog-item__list_active');
       });
     });
-  }
+  };
 
   toggleSlide('.catalog-item__link');
   toggleSlide('.catalog-item__back');
 
-
-  // modal
-
-  $('[data-modal=consultation]').on('click', function () {
+  // ================ MODAL =================
+  $('[data-modal="consultation"]').on('click', function () {
     $('.overlay, #consultation').fadeIn();
   });
 
   $('.modal__close').on('click', function () {
-    $('.overlay, #consultation, #order').fadeOut();
+    $('.overlay, #consultation, #order, #thanks').fadeOut();
   });
 
-  $('.button_mini').each(function (i) {
+  $('.button_mini').each(function(i) {
     $(this).on('click', function () {
-      $('#order .modal__descr').text($('.catalog-item__heading_subtitle').eq(i).text());
+      $('#order .modal__description').text($('.catalog-item__subtitle').eq(i).text());
       $('.overlay, #order').fadeIn();
     });
   });
 
-  function valideForms(form) {
+
+  // ================ VALIDATE =================
+  const validateForm = function (form) {
     $(form).validate({
       rules: {
         name: {
           required: true,
           minlength: 2
         },
-        tel: "required",
+        phone: 'required',
         email: {
           required: true,
           email: true
@@ -66,24 +68,29 @@ $(document).ready(function(){
       },
       messages: {
         name: {
-          required: "Пожалуйста, введите свое имя",
-          minlength: jQuery.validator.format("Введите хотя бы {0} символа!")
+          required: "Пожалуйста, введите ваше имя",
+          minlength: jQuery.validator.format("Введите {0} или более символа!")
         },
-        tel: "Пожалуйста, введите свой номер телефон",
+        phone: "Пожалуйста, введите ваш номер телефона",
         email: {
-          required: "Пожалуйста, введите свою почту",
+          required: "Пожалуйста, введите свою почту, чтобы мы смогли связаться с вами",
           email: "Неправильно введен адрес почты"
         }
       }
     });
   }
 
-  valideForms("#consultation form");
-  valideForms("#order form");
-  valideForms("#consultation-feed");
+  validateForm('#consultation form');
+  validateForm('#order form');
+  validateForm('#consultation-form');
 
-  $('input[name=tel]').mask("+7 (999) 999-99-99");
 
+  // ================ MASK INPUT =================
+  jQuery(function($){
+    $("input[name=phone]").mask("+7 (999) 999-99-99");
+  });
+
+  // ================ FORM SUBMIT TO SERVER =================
   $('form').submit(function (e) {
     e.preventDefault();
     $.ajax({
@@ -100,19 +107,22 @@ $(document).ready(function(){
     return false;
   });
 
-
+  // =================== SMOOTH SCROLL ======================
   $(window).scroll(function () {
-    if ($(this).scrollTop() > 1200) {
-      $('.pageUp').fadeIn();
+    if ($(this).scrollTop() > 700) {
+      $('.pageup').fadeIn();
     } else {
-      $('.pageUp').fadeOut();
+      $('.pageup').fadeOut();
     }
-  });
+  })
 
-  $("a[href^='#']").click(function(){
-    const _href = $(this).attr("href");
-    $("html, body").animate({scrollTop: $(_href).offset().top+"px"});
-    return false;
-  });
+  // $('a[href^="#"]').click(function () {
+  //   const _href = $(this).attr('href');
+  //   $('html, body').animate({scrollTop: $(_href).offsetTop + 'px'});
+  // });
+
+  // WOW JS 
+  new WOW().init();
 
 });
+
